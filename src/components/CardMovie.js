@@ -1,4 +1,5 @@
-
+import england from '../images/england.png'
+import japan from '../images/japan.png'
 function CardMovie(props) {
 
     return (
@@ -14,11 +15,29 @@ function CardMovie(props) {
                     <div className="row title" v-if="item.title !== item.original_title">
                         Original title : {props.popMovie.original_title}
                     </div>
-                    <div className="row language" v-if="item.original_language !== `en` && item.original_language !== `ja`">
-                        Language : <img src={`https://countryflagsapi.com/png/${props.popMovie.original_language}`}
-                            alt="item.original_language" className="flag" onerror="this.src='/images/missing.png';"
-                            crossorigin="anonymous" />
-                    </div>
+                    {(() => {
+                        if (props.popMovie.original_language !== `en` && props.popMovie.original_language !== `ja`) {
+                            return (
+                                <div className="row language" >
+                                    Language : <img src={`https://countryflagsapi.com/png/${props.popMovie.original_language}`}
+                                        alt="item.original_language" className="flag"
+                                        crossOrigin="anonymous" />
+                                </div>
+                            )
+                        } else if (props.popMovie.original_language === `en`) {
+                            return (
+                                <div className="row language" >
+                                    Language : <img src={england} alt="en" className="flag" />
+                                </div>
+                            )
+                        } else if (props.popMovie.original_language === `ja`) {
+                            return (
+                                <div className="row language">
+                                    Language: <img src={japan} alt="ja" className="flag" />
+                                </div>
+                            )
+                        }
+                    })()}
                     {/* <div className="row language" v-else-if="item.original_language == `en`">
                         Language : <img src="/images/england.png" alt="en" className="flag" />
                     </div>
