@@ -1,5 +1,7 @@
 import england from '../images/england.png'
 import japan from '../images/japan.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 function CardTv(props) {
 
     return (
@@ -29,6 +31,7 @@ function CardTv(props) {
                             return (
                                 <div className="row language" >
                                     Language : <img src={england} alt="en" className="flag" />
+
                                 </div>
                             )
                         } else if (props.popTv.original_language === `ja`) {
@@ -40,21 +43,41 @@ function CardTv(props) {
                         }
                     })()}
 
-                    {/* <div className="row language" v-else-if="item.original_language == `en`">
-                Language : <img src="/images/england.png" alt="en" className="flag" />
-            </div>
-            <div className="row language" v-else-if="item.original_language == `ja`">
-                Language: <img src="/images/japan.png" alt="ja" className="flag" />
-            </div> */}
-                    {/* 
-            <div className="row vote">
 
-                Vote : <font-awesome-icon icon="fa-solid fa-star " className="star"
-                    v-for="item in Math.round(item.vote_average / 2)" />
-                <font-awesome-icon icon="fa-solid fa-star " className="star2"
-                    v-for="item in 5 - (Math.round(item.vote_average / 2))" />
+                    <div className="row vote">
+                        Vote :
 
-            </div> */}
+                        {(() => {
+                            const stars1 = []
+                            for (let i = 0; i < Math.round(props.popTv.vote_average / 2); i++) {
+                                stars1.push(
+                                    <FontAwesomeIcon icon={faStar} className="star" />
+                                );
+
+                            }
+
+                            return stars1;
+
+
+                        })()}
+
+                        {(() => {
+                            const stars2 = []
+                            for (let i = 0; i < (5 - Math.round(props.popTv.vote_average / 2)); i++) {
+                                stars2.push(
+                                    <FontAwesomeIcon icon={faStar} className="star2" />
+                                );
+
+                            }
+
+                            return stars2;
+
+
+                        })()}
+
+
+
+                    </div>
                     <div className="row title" v-if="item.overview !== ``">
                         Overview : {props.popTv.overview}
                     </div>
