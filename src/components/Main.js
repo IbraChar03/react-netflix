@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
 import CardMovie from './CardMovie.js'
+import CardTv from './CardTv.js'
 import axios from 'axios'
 function Main() {
 
     const [popMovies, setpopMovies] = useState([])
+    const [popTvs, setpopTvs] = useState([])
     useEffect(() => {
 
         axios.get("https://api.themoviedb.org/3/movie/popular?api_key=4881642f8f2f202c4e6283bd227db882&page=1")
             .then((res) => setpopMovies(res.data.results)
+
+            )
+    })
+    useEffect(() => {
+
+        axios.get("https://api.themoviedb.org/3/tv/popular?api_key=4881642f8f2f202c4e6283bd227db882&page=1")
+            .then((res) => setpopTvs(res.data.results)
 
             )
     })
@@ -48,7 +57,10 @@ function Main() {
                         </div> */}
 
                         <div className="cont-cards">
-                            {/* <CardTv v-for="items in store.arrayCardsTv" item="items" /> */}
+                            {popTvs.map((popTv, index) => (
+                                <CardTv popTv={popTv} key={index} />
+                            ))}
+
                         </div>
                     </div>
                 </section>
