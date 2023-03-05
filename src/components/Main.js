@@ -4,6 +4,10 @@ import CardTv from './CardTv.js'
 import axios from 'axios'
 import logo from '../images/netflix.png'
 import profile from '../images/profilepicture.png'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faBell } from '@fortawesome/free-solid-svg-icons'
+import { faSortDown } from '@fortawesome/free-solid-svg-icons'
 function Main() {
     let links = [
         {
@@ -85,13 +89,17 @@ function Main() {
                     <div className="search">
                         <div className="inp">
                             <input type="text" onChange={(e) => setQuery(e.target.value)} />
-                            <input type="button" onClick={() => getData()} />
+                            {/* <input type="button"  /> */}
+                            <button>
+                                <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" onClick={() => getData()} />
+                            </button>
+
                         </div>
 
-
+                        <FontAwesomeIcon icon={faBell} className="bell" />
                         <div className="profile">
                             <img src={profile} alt="" className="imgprofile" />
-
+                            <FontAwesomeIcon icon={faSortDown} className="angle" />
 
                         </div>
                     </div>
