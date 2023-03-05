@@ -23,7 +23,12 @@ function CardMovie(props) {
                                 <div className="row language" >
                                     Language : <img src={`https://countryflagsapi.com/png/${props.popMovie.original_language}`}
                                         alt="item.original_language" className="flag"
-                                        crossOrigin="anonymous" />
+                                        crossOrigin="anonymous" onError={(e) =>
+                                            (e.target.onerror = null)(
+                                                (e.target.src =
+                                                    "https://upload.wikimedia.org/wikipedia/commons/b/b1/Missing-image-232x150.png")
+                                            )
+                                        } />
                                 </div>
                             )
                         } else if (props.popMovie.original_language === `en`) {

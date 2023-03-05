@@ -2,27 +2,102 @@ import { useEffect, useState } from "react";
 import CardMovie from './CardMovie.js'
 import CardTv from './CardTv.js'
 import axios from 'axios'
+import logo from '../images/netflix.png'
+import profile from '../images/profilepicture.png'
 function Main() {
-
+    let links = [
+        {
+            name: "Home",
+            href: '#'
+        },
+        {
+            name: "Series",
+            href: '#'
+        },
+        {
+            name: "Films",
+            href: '#'
+        },
+        {
+            name: "Recently Added",
+            href: '#'
+        },
+        {
+            name: "My List",
+            href: '#'
+        },
+    ]
+    const [query, setQuery] = useState("")
     const [popMovies, setpopMovies] = useState([])
     const [popTvs, setpopTvs] = useState([])
-    useEffect(() => {
+    function getMovie() {
 
-        axios.get("https://api.themoviedb.org/3/movie/popular?api_key=4881642f8f2f202c4e6283bd227db882&page=1")
+
+
+        let api = "https://api.themoviedb.org/3/movie/popular?api_key=4881642f8f2f202c4e6283bd227db882&page=1"
+        if (query !== "") {
+            api = "https://api.themoviedb.org/3/search/movie?api_key=4881642f8f2f202c4e6283bd227db882&query=" + query
+        }
+
+        axios.get(api)
             .then((res) => setpopMovies(res.data.results)
 
             )
-    })
-    useEffect(() => {
 
-        axios.get("https://api.themoviedb.org/3/tv/popular?api_key=4881642f8f2f202c4e6283bd227db882&page=1")
+    }
+    function getTv() {
+        let api = "https://api.themoviedb.org/3/tv/popular?api_key=4881642f8f2f202c4e6283bd227db882&page=1"
+        if (query !== "") {
+            api = "https://api.themoviedb.org/3/search/tv?api_key=4881642f8f2f202c4e6283bd227db882&query=" + query
+        }
+        axios.get(api)
             .then((res) => setpopTvs(res.data.results)
 
             )
-    })
+
+    }
+    function getData() {
+        getTv();
+        getMovie();
+    }
+    useEffect(() => {
+        getData()
+    }, []);
 
     return (
         <>
+            <section className="header">
+                <div className="cont">
+                    <div className="links">
+                        <img src={logo} alt="netflix" />
+                        <ul>
+
+                            {links.map((link, index) => (
+                                <li key={index}>
+                                    <a href={link.href} >
+                                        {link.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="search">
+                        <div className="inp">
+                            <input type="text" onChange={(e) => setQuery(e.target.value)} />
+                            <input type="button" onClick={() => getData()} />
+                        </div>
+
+
+                        <div className="profile">
+                            <img src={profile} alt="" className="imgprofile" />
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
             <section className="mainpart">
                 <section className="main">
 
