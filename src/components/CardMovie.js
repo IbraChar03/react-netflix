@@ -83,16 +83,7 @@ function CardMovie(props) {
                     <div className="row title" v-if="item.overview !== ``">
                         Overview : {props.popMovie.overview}
                     </div>
-                    {/* <div className="cast title" @click="getMovieCast()">
-                Click here for the cast
-                <div v-for="item in store.arrayMovieCast">
-                    {{ item }}
 
-                </div>
-
-
-
-            </div> */}
 
                 </div>
 

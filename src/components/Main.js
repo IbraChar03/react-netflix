@@ -89,7 +89,7 @@ function Main() {
                     <div className="search">
                         <div className="inp">
                             <input type="text" onChange={(e) => setQuery(e.target.value)} />
-                            {/* <input type="button"  /> */}
+
                             <button>
                                 <FontAwesomeIcon icon={faMagnifyingGlass} className="icon" onClick={() => getData()} />
                             </button>
@@ -109,9 +109,7 @@ function Main() {
             <section className="mainpart">
                 <section className="main">
 
-                    {/* <div className="noresults" v-if="store.arrayCardsTv.length == 0 && store.arrayCardsMovie.length == 0">
-                        <p>No Results Found! Try Again</p>
-                    </div> */}
+
 
                     <div className="container">
 
@@ -119,9 +117,7 @@ function Main() {
                             <p>POPULAR MOVIES</p>
                         </div>
 
-                        {/* <div className="text" v-if="!store.arrayCardsMovie.length == 0 && !store.showDiv">
-                            <p>MOVIES</p>
-                        </div> */}
+
 
                         <div className="cont-cards">
                             {popMovies.map((popMovie, index) => (
@@ -135,9 +131,7 @@ function Main() {
                             <p>POPULAR TV SERIES</p>
                         </div>
 
-                        {/* <div className="text" v-if="!store.arrayCardsTv.length == 0 && !store.showDiv">
-                            <p>TV SERIES</p>
-                        </div> */}
+
 
                         <div className="cont-cards">
                             {popTvs.map((popTv, index) => (
