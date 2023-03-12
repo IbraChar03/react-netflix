@@ -87,13 +87,6 @@ function CardTv(props) {
                         Overview : {props.popTv.overview}
                     </div>
 
-                    {/* <div className="cast title" >
-                Click here for the cast
-                <div v-for="item in store.arrayTvCast">
-                    {{ item }}
-                </div>
-
-            </div> */}
 
                 </div>
             </div>
